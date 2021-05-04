@@ -1,4 +1,9 @@
 numpy
 Pillow
+opencv-python
 opencv-contrib-python
 pytesseract
+imutils
+rtsp
+pyserial
+pyodbc
