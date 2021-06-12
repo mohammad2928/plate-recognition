@@ -4,18 +4,6 @@ import logging
 from parameters import db_path, db_pass 
 import datetime
 
-# query = "INSERT INTO Plate_table ([image_path], [capture_date]) VALUES (?, ?)"
-# cursor.execute(query, ("val", datetime.datetime.now()) )
-# conn.commit()
-
-# query = "CREATE TABLE Plate_table(image_path varchar(70), capture_date date)"
-# cursor.execute(query)
-# conn.commit()
-
-# cursor.execute('select * from {}'.format("Plate_table"))
-# for row in cursor.fetchall():
-#     print (row)
-
 class DB:
 
     def __init__(self):
