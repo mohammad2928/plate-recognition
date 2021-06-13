@@ -3,11 +3,11 @@
 
 In this project we extract plate text from persian plates. 
 
-## Plateform:
+## Plateform
 
 Windows (These scripts modified for windows version 10)
 
-## Directories:
+## Directories
 
 1- src -->  main scripts folder
 
@@ -15,7 +15,7 @@ Windows (These scripts modified for windows version 10)
 
 3- data --> additional data
 
-## Installation: 
+## Installation 
 
 1- pip install -r reqierments.txt
 
