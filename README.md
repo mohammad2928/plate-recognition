@@ -7,6 +7,8 @@ In this project we extract plate text from persian plates.
 
 Windows (These scripts modified for windows version 10)
 
+python  >3.6
+
 ## Directories
 
 1- src -->  main scripts folder
@@ -15,23 +17,27 @@ Windows (These scripts modified for windows version 10)
 
 3- data --> additional data
 
-## Installation 
+## Installation
 
-1- pip install -r reqierments.txt
+1- Create an virtual enviorment (You can use anaconda or virtualenv) and active the enviornment. 
+
+2- cd TO-PROJECT-FILES-FOLDER; 
+
+3- pip install -r reqierments.txt
 
 (If you are living in the IRAN, for installation maybe you need to use a VPN.)
 
-2- Head over to https://github.com/UB-Mannheim/tesseract/wiki and get the 32-bit or 64-bit version depending on your system architecture and install it like as other  programs. 
+4- Head over to https://github.com/UB-Mannheim/tesseract/wiki and get the 32-bit or 64-bit version depending on your system architecture and install it like as other  programs. 
 (Or you can use direct path in your codes)
 
-3- Put fas-tune-float.traineddata file in the C:\Program Files\Tesseract-OCR\tessdata path 
+5- Put fas-tune-float.traineddata (in the ~/data/ folder) file in the C:\Program Files\Tesseract-OCR\tessdata path 
 
-4- Install the SQL Server drivers for your platform on the client system. 
+6- Install the [SQL Server drivers](https://docs.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver15) for your platform on the client system. 
 
-## Usage:
+## Usage
 
 ``` 
-cd src;
+cd src
 config parameters.py 
 python main.py
 
