@@ -3,6 +3,8 @@ import logging
 
 from parameters import db_path, db_pass 
 import datetime
+from imp import reload
+import os
 
 class DB:
 
@@ -21,32 +23,46 @@ class DB:
         for row in cursor.fetchall():
             rows.append(row)
         return rows
-    
-    def remove_table(self, cursor, conn, query):
-        cursor.execute(query)
-        conn.commit()
-        logging.warning("table {} removed".format(query))
 
     def list_of_tables(self, cursor, conn):
         for row in cursor.tables():
             print (row.table_name)
+            
+            
+    def query_running(func):
+        def run(self, cursor, conn, query, *args):
+            func(self, cursor, conn, query, *args)
+            conn.commit()
+            logging.info("Query {} run with args {}".format(query, args))
+        return run
 
+    @query_running
     def create_table(self, cursor, conn, query):
         cursor.execute(query)
-        conn.commit()
-        logging.warning("table {} added".format(query))
 
+    @query_running
+    def remove_table(self, cursor, conn, query):
+        cursor.execute(query)
+
+    @query_running
     def insert(self, cursor, conn, query, values):
         cursor.execute(query, values)
-        conn.commit()
-        logging.info("inserted")
 
+    @query_running
     def update(self, cursor, conn, query, values):
         cursor.execute(query, values)
-        conn.commit()
-        logging.info("update {} by values {} ".format(query, values))
 
 if __name__ == "__main__":
+
+    reload(logging)
+    logging.basicConfig(handlers=[logging.FileHandler(
+                                    filename=os.path.join('logs', 'logs.log'), 
+                                                 encoding='utf-8', mode='a+'
+                                                )
+                                ],
+                    format='%(asctime)s - %(message)s',
+                    datefmt='%d-%b-%y %H:%M:%S', 
+                    level=logging.INFO)
 
     db = DB()
     cursor, conn = db.connect()
@@ -61,7 +77,9 @@ if __name__ == "__main__":
 
 
     query = 'select * from {}'.format("Plate_table")
+    
     print(db.select_rows(cursor, conn, query))
+    print(len(db.select_rows(cursor, conn, query)))
 
     # query = 'DROP TABLE Plate_table'
     # db.remove_table(cursor, conn, query)

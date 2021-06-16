@@ -5,6 +5,9 @@ import logging
 
 class Initialize:
 
+    def __init__(self):
+        self.make_folders()
+
     def make_folders(self):
         """
         the followig folders will be created
@@ -16,10 +19,7 @@ class Initialize:
             os.makedirs('logs')
 
         if not os.path.exists('plate_images'):
-            os.makedirs('palte_images')
-
-    def __init__(self):
-        self.make_folders()
+            os.makedirs('plate_images')
 
 
 class Utiles:

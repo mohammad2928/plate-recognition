@@ -6,6 +6,7 @@ import pytesseract
 import time
 import cv2 
 import datetime
+from imp import reload
 
 from camera import Camera
 from utilities import Initialize, Utiles
@@ -13,11 +14,6 @@ from parameters import pyteseract_path, thin_kernel, wide_kernel
 from imgae_processing import OCR, ImageProcessing
 from db import DB
 
-from imp import reload
-reload(logging)
-
-# logging.basicConfig(handlers=[logging.FileHandler("logs.txt", 'a', 'utf-8')])
-logging.basicConfig(filemode="a", filename=os.path.join('logs', 'main.log'), format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.DEBUG)
 
 
 def main():
@@ -31,8 +27,15 @@ def main():
     logging.info("tesseract initialized")
 
 
-    # reload(logging)
-    # logging.basicConfig(filemode="a", filename=os.path.join('logs', 'camera.log'), format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.DEBUG)
+    reload(logging)
+    logging.basicConfig(handlers=[logging.FileHandler(
+                                    filename=os.path.join('logs', 'logs.log'), 
+                                                 encoding='utf-8', mode='a+'
+                                                )
+                                ],
+                    format='%(asctime)s - %(message)s',
+                    datefmt='%d-%b-%y %H:%M:%S', 
+                    level=logging.INFO)
     C = Camera(0)
     ocr = OCR()
 
@@ -47,6 +50,7 @@ def main():
         C.capture(temp_image_path)
 
         # for file in os.listdir("test_folder"):
+        #     # print("files is {}".format(file))
         #     temp_image_path = os.path.join("test_folder", file) 
 
         start_index = 0
