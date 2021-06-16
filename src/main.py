@@ -10,10 +10,10 @@ from imp import reload
 
 from camera import Camera
 from utilities import Initialize, Utiles
-from parameters import pyteseract_path, thin_kernel, wide_kernel
-from imgae_processing import OCR, ImageProcessing
+from parameters import pyteseract_path, thin_kernel, wide_kernel, log_file_size
+from image_processing import OCR, ImageProcessing
 from db import DB
-
+from logging.handlers import RotatingFileHandler
 
 
 def main():
@@ -26,13 +26,16 @@ def main():
     pytesseract.pytesseract.tesseract_cmd = pyteseract_path
     logging.info("tesseract initialized")
 
-
+    log_file_name = os.path.join('logs', 'logs.log')
     reload(logging)
+
     logging.basicConfig(handlers=[logging.FileHandler(
-                                    filename=os.path.join('logs', 'logs.log'), 
-                                                 encoding='utf-8', mode='a+'
-                                                )
+                                    filename=log_file_name, 
+                                                 encoding='utf-8', mode='a+',
+                                                ),
+                                                RotatingFileHandler(filename=log_file_name, maxBytes=log_file_size, backupCount=0)
                                 ],
+                    
                     format='%(asctime)s - %(message)s',
                     datefmt='%d-%b-%y %H:%M:%S', 
                     level=logging.INFO)
@@ -49,6 +52,7 @@ def main():
     while 1:
         C.capture(temp_image_path)
 
+        utils.checking_log_file(log_file_name, log_file_size)
         # for file in os.listdir("test_folder"):
         #     # print("files is {}".format(file))
         #     temp_image_path = os.path.join("test_folder", file) 

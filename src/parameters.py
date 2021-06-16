@@ -33,10 +33,12 @@ persian_numbers = {
 }
 
 # minimum and maximum number of persian numbers for accept as a plate
-minimum_persian_numbers_count = 2
+minimum_persian_numbers_count = 4
 maximum_persian_numbers_count = 8
 
 # db variables
 db_path = os.path.join("db", "iCCard.mdb")
 db_pass = "168168"
 
+# log size
+log_file_size = 50 * 1025 * 1024

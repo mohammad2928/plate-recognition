@@ -41,4 +41,8 @@ class Utiles:
             os.remove(f)
         logging.warning("all files in the folder {} removed".format(folder_path))
 
+    def checking_log_file(self, log_path, log_file_size):
+        if os.stat(log_path).st_size >= log_file_size:
+            open(log_path, 'w').close()
+
     
