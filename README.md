@@ -34,6 +34,31 @@ python  >3.6
 
 6- Install the [SQL Server drivers](https://docs.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver15) for your platform on the client system. 
 
+## Troubleshooting
+
+1- pyodbc.InterfaceError:
+This problem occured when you do not install odbc-driver or set not true drive. You can use the following cods for define your drivers and set true driver. 
+``` 
+msa_drivers = [x for x in pyodbc.drivers() if 'ACCESS' in x.upper()]
+print(msa_driver)
+```
+In the following an example of output is shown:
+``` 
+
+MS-Access Drivers : ['Microsoft Access Driver (*.mdb)', 'Microsoft Access Text Driver (*.txt, *.csv)']
+```
+and than change the following line in db.py:
+``` 
+
+driver = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
+```
+to 
+```
+
+driver = "Driver={Microsoft Access Driver (*.mdb)};
+```
+
+
 ## Usage
 
 ``` 
