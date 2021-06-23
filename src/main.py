@@ -10,7 +10,7 @@ from imp import reload
 
 from camera import Camera
 from utilities import Initialize, Utiles
-from parameters import pyteseract_path, thin_kernel, wide_kernel, log_file_size
+from parameters import pyteseract_path, thin_kernel, wide_kernel, log_file_size, url
 from image_processing import OCR, ImageProcessing
 from db import DB
 from logging.handlers import RotatingFileHandler
@@ -39,7 +39,7 @@ def main():
                     format='%(asctime)s - %(message)s',
                     datefmt='%d-%b-%y %H:%M:%S', 
                     level=logging.INFO)
-    C = Camera(0)
+    C = Camera(url)
     ocr = OCR()
 
     db = DB()
