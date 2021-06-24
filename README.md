@@ -28,7 +28,7 @@ python  >3.6
 (If you are living in the IRAN, for installation maybe you need to use a VPN.)
 
 4- Head over to https://github.com/UB-Mannheim/tesseract/wiki and get the 32-bit or 64-bit version depending on your system architecture and install it like as other  programs. 
-(Or you can use direct path in your codes)
+(Or you can use direct path in your codes), you can use installation file in ~/data/ folder. 
 
 5- Put fas-tune-float.traineddata (in the ~/data/ folder) file in the C:\Program Files\Tesseract-OCR\tessdata path 
 
